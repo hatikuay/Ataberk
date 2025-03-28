@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthController {
+
   @Autowired
   private UserService userService;
 
@@ -29,7 +30,7 @@ public class AuthController {
   @PostMapping("/register")
   public String registerUser(@ModelAttribute("user") User user) {
     userService.save(user);
-    return "register";
+    return "redirect:/login";
   }
 
   @GetMapping("/home")
