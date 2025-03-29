@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class User {
+public class LibraryUser {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,18 +3,18 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.model.LibraryUser;
+import com.example.demo.service.LibraryUserService;
 
 @Controller
 public class AuthController {
 
   @Autowired
-  private UserService userService;
+  private LibraryUserService userService;
 
   @GetMapping("/login")
   public String loginPage() {
@@ -23,12 +23,12 @@ public class AuthController {
 
   @GetMapping("/register")
   public String registerForm(Model model) {
-    model.addAttribute("user", new User());
+    model.addAttribute("user", new LibraryUser());
     return "register";
   }
 
   @PostMapping("/register")
-  public String registerUser(@ModelAttribute("user") User user) {
+  public String registerUser(@ModelAttribute("user") LibraryUser user) {
     userService.save(user);
     return "redirect:/login";
   }

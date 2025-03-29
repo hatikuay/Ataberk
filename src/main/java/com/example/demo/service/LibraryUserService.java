@@ -10,19 +10,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.model.LibraryUser;
+import com.example.demo.repository.LibraryUserRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+public class LibraryUserService implements UserDetailsService {
 
   @Autowired
-  private UserRepository userRepository;
+  private LibraryUserRepository userRepository;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  public void save(User user) {
+  public void save(LibraryUser user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     userRepository.save(user);
 
@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = userRepository.findByUsername(username)
+    LibraryUser user = userRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not found"));
 
     return new org.springframework.security.core.userdetails.User(
