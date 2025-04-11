@@ -17,7 +17,8 @@ public class AuthController {
   private LibraryUserService userService;
 
   @GetMapping("/login")
-  public String loginPage() {
+  public String loginPage(Model model) {
+    model.addAttribute("user", new LibraryUser());
     return "login";
   }
 
